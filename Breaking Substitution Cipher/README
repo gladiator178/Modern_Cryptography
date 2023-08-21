@@ -1,0 +1,40 @@
+We did the frequency analysis of the given ciphertext. The frequency of Y comes out to be the greatest. We know that for any plaintext in the English alphabet, the frequency of the letter E is the highest, hence we substitute Y with E. The second highest frequency is of the letter M, we replace this with T which has the second highest frequency in the English alphabet’s plain text.
+Then we observe that there are many places with “T*E”, the most probable word would be “THE”, so we replace E with H. We then observe a “*EE”, now there are limited choices for three-letter words ending with EE, so we can easily guess it to be SEE, so A is replaced by S.
+Now we observe, “TH*S *S”, where both blanks need to be filled by the same letter, the only possible combination is “THIS IS”, so W is replaced by I. Now we observe the presence of “I*”, since S is already there in the decoded text, the only possible value is IN as others are not fitting. So, H is replaced by N. Just after the full stop, there is a two-letter word ending in S, so that can only be AS, so we replace P with A. Now we observe “AS *** *AN SEE”, which can be guessed to be the phrase, “AS YOU CAN SEE”, so we do the corresponding replacements, XGN are replaced as CAN respectively.
+We see the presence of words with a single missing letter for which the most probable word could be easily guessed. So, we keep guessing the most probable word and replacing the encrypted letter with the corrected one. 
+“SU*STITUTION CI*HE*” -> SUBSTITUTION CIPHER
+“HA*E BEEN” -> HAVE BEEN
+“*ITHOUT” -> WITHOUT
+“PASSWOR*” -> PASSWORD
+“*UOTES” -> QUOTES
+“CHA*BER”-> CHAMBER
+“INTERESTIN*” -> INTERESTING
+“*IRST” -> FIRST
+In the process, OFSBVUDJRTK gets replaced as BPRVWDQMGFL respectively replacing one after the other. Similarly, we figured out more replacements and finally got the mapping of all letters. For the numbers, we tried all the possible shifting possibilities because the discovered plaintext was saying that the digits are shifted by "8" places, but it was wrong, this comes out to be 4 by brute force (4 places backward or 6 places forward). Hence, we get our deciphered text.
+Frequencies of alphabets in the ciphertext:
+a:27
+b:2
+c:0
+d:3
+e:22
+f:4
+g:14
+h:12
+i:9
+j:7
+k:5
+l:0
+m:28
+n:7
+o:7
+p:13
+q:0
+r:5
+s:13
+t:6
+u:6
+v:4
+w:25
+x:3
+y:36
+z:0
