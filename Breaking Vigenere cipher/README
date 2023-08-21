@@ -1,0 +1,72 @@
+First we did the frequency analysis of the ciphertext. We noticed that the frequencies are almost equal and no such peaks like English 
+language. The pattern of the frequency analysis of ciphertext was not like English text. So, we conclude that it is not a substitution 
+cipher or transformation cipher. And we noticed that “cjj”, “cjn”, … etc. are repeating, so it can be poly substitution cipher. 
+Then we analysed the bigrams, trigrams, etc. and measured the distance between the bigrams, trigrams, etc. we noticed that almost all 
+of them are like 10,20,40,… (multiple of 10 or 20).  And in the clue also the number of horizontal lines were 10. Then we did the index 
+of coincidence(IOC) count of various key lengths and we noticed that the peaks are at 10, 20, etc, where the value of IOC of 10 length key
+was close to the IOC of English language. Thus we conclude that it is a vigenere cipher (poly substitution cipher) of key length 10.
+
+After finding the key length we divided the cipher text into blocks of 10 (according to the key length):
+'knnnxjbjnqxccvconvc', 'gpttamuxctwtjdjkgcj', 'fnchcxfnbxqnnnnampn', 'czjnjwqogwcpptguvkt', 'wyjnjywfilaljycythj', 'dhwywyisymjyctnbzb', 'qjgvgjvdqovjvhvkvq', 'hcknugjgicjhekanvt', 'vougrrgrqagqjpqngf', 'icwkfbdmuztsbevost'
+
+And also in the clue the count of the dashes were 9,2,9,2,5,5,2,2,2,1. This could be related to the key, This could be the shift of the 10 blocks and so by this and running the frequency analysis and hit and trial we tried to find the key.
+
+{knnnxjbjnqxccvconvc}
+By running frequency analysis on the obtained block to discover that n has the highest frequency. Since, e has the highest frequency in the english alphabet, e is transformed to n and hence the first letter of the key is J. All other high frequencies are fitting to the highest frequency words and we finalise J as our final key letter.
+
+{gpttamuxctwtjdjkgcj}
+Highest frequency is of t, considering e is transformed to t, we notice that r is transformed to g, so the first word of the ciphered text given Kg becomes Br, which is not a suitable word, and r doesnt occur as the last letter of a two letter word in english alphabet.
+Next possibility is e is transformed to j, but then we find out that A would be transformed to F which has no frequency or bb as the first word which is not possible. Now consider e is transformed to g, then we get correct outcomes. Hence the second letter is e and the first word is BE.
+
+{fnchcxfnbxqnnnnampn}
+Consider E is transformed to N i.e. the key is J. We do not find any discrepancies, so we proceed. 
+
+{czjnjwqogwcpptguvkt}
+
+C,G,J,P,T,W have highest frequencies, we noticed from the key size observation that key may be of length two so consider key is c and e is transformed to g.
+
+The following half ciphered text is given, in which the letters in bold are the deciphered text letters and the non-bold letters are yet to be deciphered. This is not a proper plain text and needs more keywords. Now by guessing the half complete words- 
+
+ Be wawd qh vie nexy hjcocer, thjwg ku wery lnyvng koy thjwg.
+   Urfak ouy yjg rbsswowi "vjg_dave_mfs_dg_rmeasei" yq iq uhroulm.
+   Oca zou haaj vjg ttrenlyj hqs the njcv ejbmber. Yt hkpe the ecnv,
+   aqv firsy bknn oeed tt zvvgs magih bqtft therj.
+
+Nexy-next and ouy-our
+So, the fifth keyword is F
+wery-very
+So,the tenth keyword is B
+
+We get:
+ Be ward qh vhe next hjcober, thewg ku very liyvng joy thewg.
+   Ureak out yjg rasswori "vjg_cave_mas_dg_rleased" yq iq througm.
+   Oca you havj vjg strengyj hqr the necv ejamber. Tt hkpd the exnv,
+   aqu first bknn need to zvvgr magic bqtfs there.
+
+By knowing the context of the conversation, we can guess that
+ejamber should have been chamber, so 8th and 9th keyletters are c and c respectively. 
+
+througm-through, so the 6th key letter is f.
+
+We get:
+Be wary qf the next cjamber, therg is very litvle joy therg.
+   Speak out tje password "vhe_cave_man_de_pleased" tq go through.
+   Oay you have vhe strengtj for the nexv chamber. To hind the exiv,
+   you first wkll need to uvter magic wqrds there.
+
+Now,only one possibility for qf to be of is there and hence the seventh key letter is c.
+
+So by this and the clue. The 9,2,9,2,5,5,2,2,2,1 was the key indeed. 
+So our keyword is : jcjcffcccb
+
+The analyisis and the graphs are showed in the code.
+
+Cipher text:
+Kg fcwd qh vin pnzy hjcocnt, cjjwg ku wnth nnyvng kxa cjjwg. Urfjm xwy yjg rbbufqwi "vjg_djxn_ofs_dg_rmncbgi" yq iq uqtxwlm. Oca zxw qcaj vjg tctnplyj hqs cjn pjcv ejbvdnt. Yt hkpe cjn gcnv,aqv okauy bknn ongm vt zvvgs vcpkh bqtft cjntj.
+
+Key: jcjcffcccb
+
+The final plaintext:
+
+be wary of the next chamber, there is very little joy there. speak out the password "the_cave_man_be_pleased" to go through. may you have the strength for the next chamber. to find the exit,you first will need to utter magic words there.
+
