@@ -1,0 +1,12 @@
+After reaching the magical screen where we can whisper the word ‘password’ and get the encrypted password, the spirit told us that the encryption system used can be a 4, 6 or other rounds des. He also mentioned that 4-round des would be too easy to decrypt. So, we started our analysis with a 6-round des. 
+We use the chosen plain text attack to break the des.
+Also, it is given that the text appears as two letters for one byte, and there are 8 bytes in input, so 16 letters are used here mapped to 0-15 and by frequency analysis of the password we get that those letters start from f and go till u.
+f-0000 g-0001 h-0010 … u-1111
+To break a 6-round des, we need a 4-round characteristic which is 405c0000 04000000 and after 4 rounds, it will give the differential 00540000 04000000 with a probability of 0.000381.
+We start by generating 100000 random inputs of 64 bits each and store them in a text file. And we know that the inverse initial permutation of ‘405c0000 04000000’ is ‘0000901010005000’ in hexadecimal format.
+So, we xor all the inputs with ‘0000901010005000’(in 64-bit binary format) to get input pairs(also in 64-bit binary format). In the places where there is some other format, we just convert it to the 64-bit binary format. Now, we generate the output corresponding to the inputs by connecting with the server and running the scripts. We store the output pairs after converting them to 64-bit binary strings in another text file.
+
+We know from the lecture on the differential cryptanalysis of the 4-des that we need output xor of S box of last round (gamma1 xor gamma2), input xor to S box of last round (beta1 xor beta2) and expanded values of R5 (alpha1,alpha2) and R5=L6.
+We run a program and store the values in alphaxor.txt, betaxor.txt and reversefinalperm.txt.We perform all the steps mentioned in the lecture to get the bits for the key.We store the frequencies of these keys and find the maximum frequency.
+
+We find the bits of the keys leaving the 20 bits which is found by using the brute force approach. 
