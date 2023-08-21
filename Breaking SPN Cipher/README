@@ -1,0 +1,60 @@
+The cryptosystem used here is the monoalphabatic substitution and permutation cipher (with a block length of 5 in permutation).
+
+Cipher text:
+qmnjvsa nv wewc flct vprj tj tvvplvl fv xja vqildhc
+	xmlnvc nacyclpa fc gyt vfvw. fv wgqyp, pqq pqcs y wsq
+	rx qmnjvafy cgv tlvhf cw tyl aeuq fv xja tkbv cqnsqs. 
+	lhf avawnc cv eas fuqb qvq tc yllrqr xxwa cfy. psdc uqf
+	avrqc gefq pyat trac xwv taa wwd dv eas flcbq. vd trawm
+	vupq quw x decgqcwt, yq yafl vlqs yqklhq! snafq vml
+	lhvqpawr nqg_vfusr_ec_wawy qp fn wgawdgf.
+
+Plain text:
+breaker of this code will be blessed by the squeaky 
+spirit residing in the hole. go ahead, and find a way 
+of breaking the spell on him cast by the evil jaffar.  
+the spirit of the cave man is always with you. find the 
+magic wand that will let you out of the caves. it would 
+make you a magician, no less than jaffar! speak the 
+password the_magic_of_wand to go through.
+
+We start with the frequency analysis of the given ciphered text and find that it is not a mono-substitution cipher or normal permutation cipher.
+
+We then check for vigenere ciphers and spn networks and find out the bigrams’ and trigrams’ separations.
+We then notice that their distances have a common multiple of 2,3,4,5.
+
+We check all of them one by one, discarding 2 to be the key length because it will then be easily breakable. Out of 3,4 and 5 as key lengths, 5 has the highest frequency among the factors of the distances, so we start by taking the key length as 5.
+
+Now, before moving on with the vigenere cipher, we try the normal substitution permutation network with key length 5.
+
+As per the context of the caveman’s scripts, we can guess that if there is an encrypted text in the last line, the text might be hinting about some password.
+So, snafq vml lhvqpawr nqg_vfusr_ec_wawy should probably have been “enter the password {nqg_vfusr_ec_wawy}” or “speak the password {nqg_vfusr_ec_wawy}”
+
+So we try all the combinations for the key by which we get ll together (since the password contains ss together, so we search for two same letters within 10 character distance which is only ll) and replace l with s.
+
+By this step, the first two elements of the key get fixed as 4 and 5. 
+Now for the rest of the elements. We get the following substitutions after fixing 4 and 5:
+l->s  h->p a->t f->h 
+To get “Speak the password” phrase.
+We try with the key to be 45123
+But as h becomes p and for the word to be “password” something like ****p*ss*** should be there, so the only possibility, in this case, is if the third key element is 2.
+So now, q->a
+And we try with the key 4,5,2,3,1
+SP*A* THA P*SS****T->something like this comes on replacement. Now, with this key we are getting tha instead of the. 
+So, we finalise our key to be 4,5,2,1,3
+
+“Lhvqm afv hqllrwnp” is “speak the password”. So, we do the substitutions accordingly.
+Now, applying the same techniques as used in mono substitution cipher to crack this:
+“*REAKER O* TH*S” should have been “breaker of this”
+“*ODE WI** BE B*ESSED B*” should have been “code will be blessed by”
+“RESIDI** I* THE HOLE” should have been “residing in the hole”
+“SPELL ON HI* CAST BY THE E*IL” should have been “spell on him cast by the evil”
+YO* ->you S**EAKY->squeaky *AFFAR->zaffar
+
+So the alphabetic encoding is as follows:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ->TVIUCHGPQBZSKRODAWFLMEOYNZ
+
+The total length of encrypted text is 284 leaving the numbers, punctuations, and spaces. So, we have performed permutation for 280 characters divided into blocks of 5 and the last four characters are left unchanged as it is to give the word through.
+
+Also, there is no specific encoding for the punctuations and spaces as they are needed as it is in the ciphered text.
